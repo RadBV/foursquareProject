@@ -14,10 +14,12 @@ class mapVC: UIViewController {
     //MARK: - Outlets & lazy properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationSearchaBar: UISearchBar!
+    @IBOutlet weak var venueCollectionView: UICollectionViewCell!
     
     lazy var venueSearchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        
+        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
+        searchBar.placeholder = "Search for venues."
+        searchBar.searchBarStyle = .minimal
         return searchBar
     }()
     
@@ -25,11 +27,24 @@ class mapVC: UIViewController {
     //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUpVenueSearchBar()
+        setUpLocationSearchBars()
+        venueCollectionView.isHidden = true
         // Do any additional setup after loading the view.
     }
     //MARK: - Functions
     
+    private func setUpVenueSearchBar() {
+        let leftNavBarButton = UIBarButtonItem(customView: venueSearchBar)
+        self.navigationItem.leftBarButtonItem = leftNavBarButton
+        
+        
+    }
+    private func setUpLocationSearchBars() {
+        //locations searchBar
+        locationSearchaBar.searchBarStyle = .minimal
+        locationSearchaBar.placeholder = "New York, NY"
+    }
     
     /*
     // MARK: - Navigation
