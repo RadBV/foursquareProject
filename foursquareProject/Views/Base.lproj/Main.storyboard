@@ -30,10 +30,33 @@
                     <view key="view" contentMode="scaleToFill" id="5fz-df-42R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DNp-S4-IZY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="reh-3d-U4C">
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DNp-S4-IZY" firstAttribute="top" secondItem="ZJm-Ab-UnH" secondAttribute="top" id="06Z-co-RWb"/>
+                            <constraint firstItem="reh-3d-U4C" firstAttribute="top" secondItem="DNp-S4-IZY" secondAttribute="bottom" id="L1w-o4-nlY"/>
+                            <constraint firstItem="DNp-S4-IZY" firstAttribute="centerX" secondItem="ZJm-Ab-UnH" secondAttribute="centerX" id="Mnc-1c-t13"/>
+                            <constraint firstItem="reh-3d-U4C" firstAttribute="leading" secondItem="ZJm-Ab-UnH" secondAttribute="leading" id="R17-42-GmF"/>
+                            <constraint firstItem="ZJm-Ab-UnH" firstAttribute="trailing" secondItem="reh-3d-U4C" secondAttribute="trailing" id="fk3-Zz-5gP"/>
+                            <constraint firstItem="ZJm-Ab-UnH" firstAttribute="bottom" secondItem="reh-3d-U4C" secondAttribute="bottom" id="lQq-RF-izh"/>
+                            <constraint firstItem="DNp-S4-IZY" firstAttribute="trailing" secondItem="reh-3d-U4C" secondAttribute="trailing" id="uHn-Fh-rAg"/>
+                            <constraint firstItem="DNp-S4-IZY" firstAttribute="leading" secondItem="reh-3d-U4C" secondAttribute="leading" id="yLf-uf-W8X"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZJm-Ab-UnH"/>
                     </view>
                     <navigationItem key="navigationItem" id="eRY-fw-yPf"/>
+                    <connections>
+                        <outlet property="locationSearchaBar" destination="DNp-S4-IZY" id="ZgT-bI-W5b"/>
+                        <outlet property="mapView" destination="reh-3d-U4C" id="3RC-Uh-Ng0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpr-dZ-qcQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

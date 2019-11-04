@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import MapKit
 
 class mapVC: UIViewController {
 
+    //MARK: - Outlets & lazy properties
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var locationSearchaBar: UISearchBar!
+    
+    lazy var venueSearchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        
+        return searchBar
+    }()
+    
+    
+    //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    //MARK: - Functions
     
-
+    
     /*
     // MARK: - Navigation
 
