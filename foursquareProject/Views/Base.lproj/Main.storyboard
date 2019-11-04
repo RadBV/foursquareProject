@@ -87,7 +87,7 @@
                     <connections>
                         <outlet property="locationSearchaBar" destination="DNp-S4-IZY" id="ZgT-bI-W5b"/>
                         <outlet property="mapView" destination="reh-3d-U4C" id="3RC-Uh-Ng0"/>
-                        <outlet property="venueCollectionView" destination="Dab-UI-xiJ" id="PoP-oK-dnI"/>
+                        <outlet property="venueCollectionView" destination="Zxo-9C-PDa" id="ajt-7o-0Y2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpr-dZ-qcQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,13 +8,14 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class mapVC: UIViewController {
 
     //MARK: - Outlets & lazy properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationSearchaBar: UISearchBar!
-    @IBOutlet weak var venueCollectionView: UICollectionViewCell!
+    @IBOutlet weak var venueCollectionView: UICollectionView!
     
     lazy var venueSearchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
