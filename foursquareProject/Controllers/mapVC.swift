@@ -115,5 +115,44 @@ extension mapVC: CLLocationManagerDelegate {
 extension mapVC: MKMapViewDelegate {}
 
 extension mapVC: UISearchBarDelegate {
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+         //create activity indicator
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = self.view.center
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        
+        searchBar.resignFirstResponder()
+        
+        //search request
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            activityIndicator.stopAnimating()
+            
+            if response == nil {
+                print(error)
+            } else {
+                //remove annotations
+                let annotations = self.mapView.annotations
+                self.mapView.removeAnnotations(annotations)
+                
+                //get data
+                let latitud = response?.boundingRegion.center.latitude
+                let longitud = response?.boundingRegion.center.longitude
+                
+                let newAnnotation = MKPointAnnotation()
+                newAnnotation.title = searchBar.text
+                newAnnotation.coordinate = CLLocationCoordinate2D(latitude: latitud!, longitude: longitud!)
+                self.mapView.addAnnotation(newAnnotation)
+                
+                //to zoom in the annotation
+                let coordinateRegion = MKCoordinateRegion.init(center: newAnnotation.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
+                self.mapView.setRegion(coordinateRegion, animated: true)
+            }
+        }
+
+    }
+
 }
