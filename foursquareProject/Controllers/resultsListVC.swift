@@ -9,13 +9,19 @@
 import UIKit
 
 class resultsListVC: UIViewController {
-
+    
+    //MARK: - Outlets
+    @IBOutlet weak var resultsListTableView: UITableView!
+    
+    //MARK: - Properties
+    
+    //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+    //MARK: - Functions
 
     /*
     // MARK: - Navigation
