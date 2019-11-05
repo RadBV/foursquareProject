@@ -20,6 +20,7 @@
 		1D46C4552370D97900B9F2EE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C4542370D97900B9F2EE /* NetworkManager.swift */; };
 		1D46C4572370D98D00B9F2EE /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C4562370D98D00B9F2EE /* ErrorHandling.swift */; };
 		1D46C4592370D9AA00B9F2EE /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C4582370D9AA00B9F2EE /* PersistenceHelper.swift */; };
+		1D46C45B237110E700B9F2EE /* resultsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C45A237110E700B9F2EE /* resultsListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		1D46C4542370D97900B9F2EE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1D46C4562370D98D00B9F2EE /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		1D46C4582370D9AA00B9F2EE /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
+		1D46C45A237110E700B9F2EE /* resultsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultsListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				1D46C44D2370B40C00B9F2EE /* mapVC.swift */,
 				1D46C44F2370B41F00B9F2EE /* collectionsVC.swift */,
+				1D46C45A237110E700B9F2EE /* resultsListVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				1D46C4262370986700B9F2EE /* SceneDelegate.swift in Sources */,
 				1D46C4572370D98D00B9F2EE /* ErrorHandling.swift in Sources */,
 				1D46C4502370B41F00B9F2EE /* collectionsVC.swift in Sources */,
+				1D46C45B237110E700B9F2EE /* resultsListVC.swift in Sources */,
 				1D46C4592370D9AA00B9F2EE /* PersistenceHelper.swift in Sources */,
 				1D46C4522370D84700B9F2EE /* LocationGetter.swift in Sources */,
 			);

@@ -23,17 +23,30 @@ class mapVC: UIViewController {
         searchBar.searchBarStyle = .minimal
         return searchBar
     }()
+    //MARK: - Properties
     
+    private let locationManager = CLLocationManager()
+    let searchRadius: CLLocationDistance = 2000
     
     //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpDelegates()
+        mapView.userTrackingMode = .follow
         setUpVenueSearchBar()
-        setUpLocationSearchBars()
+        setUpLocationSearchBar()
+        locationAuthorization()
         venueCollectionView.isHidden = true
         // Do any additional setup after loading the view.
     }
     //MARK: - Functions
+    
+    private func setUpDelegates() {
+        locationManager.delegate = self
+        mapView.delegate = self
+        venueSearchBar.delegate = self
+        locationSearchaBar.delegate = self
+    }
     
     private func setUpVenueSearchBar() {
         let leftNavBarButton = UIBarButtonItem(customView: venueSearchBar)
@@ -41,10 +54,24 @@ class mapVC: UIViewController {
         
         
     }
-    private func setUpLocationSearchBars() {
+    private func setUpLocationSearchBar() {
         //locations searchBar
         locationSearchaBar.searchBarStyle = .minimal
         locationSearchaBar.placeholder = "New York, NY"
+    }
+    
+    private func locationAuthorization() {
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        default:
+            locationManager.requestWhenInUseAuthorization()
+            
+        }
     }
     
     /*
@@ -57,4 +84,36 @@ class mapVC: UIViewController {
     }
     */
 
+}
+
+extension mapVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("New location: \(locations)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("Authorozation status changed to \(status.rawValue)")
+        
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+            //Call a function to get the current location
+            
+        default:
+            break
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error)")
+    }
+    
+}
+
+extension mapVC: MKMapViewDelegate {}
+
+extension mapVC: UISearchBarDelegate {
+    
 }

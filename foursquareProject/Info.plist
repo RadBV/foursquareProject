@@ -53,8 +53,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationUsageDescription</key>
-	<string>hey can u turn on ur location real quick i just wanna talk</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>hey can u turn ur location on real quick i just wanna talk</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
