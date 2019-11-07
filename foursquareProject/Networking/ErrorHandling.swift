@@ -10,7 +10,7 @@ import Foundation
 
 enum ErrorHandling: Error {
     case badURL
-    case decodingError
+    case couldNotParseJSON(rawError: Error)
     case noData
     case networkError
     case badHTTPResponse

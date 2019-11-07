@@ -28,9 +28,16 @@ class mapVC: UIViewController {
     private let locationManager = CLLocationManager()
     let searchRadius: CLLocationDistance = 2000
     
+    var venues = [Venues]() {
+        didSet {
+            venueCollectionView.reloadData()
+        }
+    }
+    
     //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         setUpDelegates()
         mapView.userTrackingMode = .follow
         setUpVenueSearchBar()
@@ -40,6 +47,19 @@ class mapVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     //MARK: - Functions
+    private func loadData() {
+        VenueAPIClient.shared.getEpisodes { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let venuesFromOnline):
+                    self.venues = venuesFromOnline
+                    dump(venuesFromOnline)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
     
     private func setUpDelegates() {
         locationManager.delegate = self
