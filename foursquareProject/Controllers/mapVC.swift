@@ -54,7 +54,8 @@ class mapVC: UIViewController {
     }
     //MARK: - Functions
     private func loadData() {
-        VenueAPIClient.shared.getEpisodes { (result) in
+        guard let userLocation: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        VenueAPIClient.shared.getEpisodes(lat: userLocation.latitude, long: userLocation.longitude, searchString: searchString) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let venuesFromOnline):
@@ -111,6 +112,7 @@ class mapVC: UIViewController {
     */
 
 }
+//MARK: - Extensions
 
 extension mapVC: CLLocationManagerDelegate {
     
@@ -124,8 +126,6 @@ extension mapVC: CLLocationManagerDelegate {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
-            //Call a function to get the current location
-            
         default:
             break
         }
@@ -141,6 +141,7 @@ extension mapVC: CLLocationManagerDelegate {
 extension mapVC: MKMapViewDelegate {}
 
 extension mapVC: UISearchBarDelegate {
+    //TODO: figure out how to add more than one annotation when new search term is entered
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
          //create activity indicator
         let activityIndicator = UIActivityIndicatorView()
@@ -169,7 +170,7 @@ extension mapVC: UISearchBarDelegate {
                 let longitud = response?.boundingRegion.center.longitude
                 
                 let newAnnotation = MKPointAnnotation()
-                newAnnotation.title = searchBar.text
+                newAnnotation.title = response?.mapItems.first?.name
                 newAnnotation.coordinate = CLLocationCoordinate2D(latitude: latitud!, longitude: longitud!)
                 self.mapView.addAnnotation(newAnnotation)
                 
@@ -178,7 +179,21 @@ extension mapVC: UISearchBarDelegate {
                 self.mapView.setRegion(coordinateRegion, animated: true)
             }
         }
-
     }
+    
+//    private func addAWholeBunchOfAnnotations() {
+//        let annotationOne = MKPointAnnotation()
+//    }
+}
 
+extension mapVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return venues.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }

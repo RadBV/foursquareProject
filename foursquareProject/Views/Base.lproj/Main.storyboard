@@ -58,6 +58,17 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7Td-VE-9ne">
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-Kc-A1R">
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="126"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RCp-Kc-A1R" firstAttribute="top" secondItem="7Td-VE-9ne" secondAttribute="top" id="BEp-ha-wT0"/>
+                                                <constraint firstAttribute="bottom" secondItem="RCp-Kc-A1R" secondAttribute="bottom" id="d31-Qy-WAs"/>
+                                                <constraint firstItem="RCp-Kc-A1R" firstAttribute="leading" secondItem="7Td-VE-9ne" secondAttribute="leading" id="hXV-rj-bsr"/>
+                                                <constraint firstAttribute="trailing" secondItem="RCp-Kc-A1R" secondAttribute="trailing" id="zJT-OL-kkt"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="124" height="126"/>
                                     </collectionViewCell>
