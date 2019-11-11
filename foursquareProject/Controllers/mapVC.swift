@@ -19,7 +19,7 @@ class mapVC: UIViewController {
     
     lazy var venueSearchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
-        searchBar.placeholder = "Search for venues."
+        searchBar.placeholder = "Search for venues..."
         searchBar.searchBarStyle = .minimal
         return searchBar
     }()
@@ -30,7 +30,13 @@ class mapVC: UIViewController {
     
     var venues = [Venues]() {
         didSet {
+            mapView.addAnnotations(venues.filter{$0.hasValidCoordinates})
             venueCollectionView.reloadData()
+        }
+    }
+    var searchString: String? = nil {
+        didSet{
+            mapView.addAnnotations(venues.filter{ $0.hasValidCoordinates})
         }
     }
     
