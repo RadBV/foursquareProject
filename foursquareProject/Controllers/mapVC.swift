@@ -35,11 +35,7 @@ class mapVC: UIViewController {
             venueCollectionView.reloadData()
         }
     }
-    var searchString: String? = nil {
-        didSet{
-            mapView.addAnnotations(venues.filter{ $0.hasValidCoordinates})
-        }
-    }
+    var venueSearchString: String? = nil
     
     //MARK: - Life Cycles
     override func viewDidLoad() {
@@ -56,7 +52,7 @@ class mapVC: UIViewController {
     //MARK: - Functions
     private func loadData() {
         guard let userLocation: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
-        VenueAPIClient.shared.getEpisodes(lat: userLocation.latitude, long: userLocation.longitude, searchString: searchString) { (result) in
+        VenueAPIClient.shared.getEpisodes(lat: userLocation.latitude, long: userLocation.longitude, searchString: venueSearchString) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let venuesFromOnline):
@@ -142,7 +138,10 @@ extension mapVC: CLLocationManagerDelegate {
 extension mapVC: MKMapViewDelegate {}
 
 extension mapVC: UISearchBarDelegate {
-    //TODO: figure out how to add more than one annotation when new search term is entered
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        venueSearchString = venueSearchBar.text
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         loadData()
         print(venues.count)

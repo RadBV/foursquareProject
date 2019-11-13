@@ -15,10 +15,10 @@ class VenueAPIClient {
     
     func getEpisodes(lat: Double, long: Double, searchString: String?, completionHandler: @escaping (Result<[Venues],ErrorHandling>) -> Void ) {
         
-//        guard let searchString = searchString else {return}
-//        let urlStr = "https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&client_id=\(Secrets.apiID)&client_secret=\(Secrets.apiKey)&v=20191104&query=\(searchString)"
+        guard let searchStringUnwrapped = searchString else {return}
+        let urlStr = "https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&client_id=\(Secrets.apiID)&client_secret=\(Secrets.apiKey)&v=20191104&query=\(searchStringUnwrapped.lowercased())"
         
-        let urlStr = "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(Secrets.apiID)&client_secret=\(Secrets.apiKey)&v=20191104&query=coffee"
+        print(urlStr)
         
         NetworkManager.shared.fetchData(urlStr: urlStr) { (result) in
             switch result {
