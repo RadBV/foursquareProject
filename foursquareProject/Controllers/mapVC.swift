@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class mapVC: UIViewController {
-
+    
     //MARK: - Outlets & lazy properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationSearchaBar: UISearchBar!
@@ -21,6 +21,7 @@ class mapVC: UIViewController {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
         searchBar.placeholder = "Search for venues..."
         searchBar.searchBarStyle = .minimal
+        searchBar.tag = 0
         return searchBar
     }()
     //MARK: - Properties
@@ -30,7 +31,7 @@ class mapVC: UIViewController {
     
     var venues = [Venues]() {
         didSet {
-            mapView.addAnnotations(venues.filter{$0.hasValidCoordinates})
+            //            mapView.addAnnotations(venues.filter{$0.hasValidCoordinates})
             venueCollectionView.reloadData()
         }
     }
@@ -102,15 +103,15 @@ class mapVC: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 //MARK: - Extensions
 
@@ -143,57 +144,61 @@ extension mapVC: MKMapViewDelegate {}
 extension mapVC: UISearchBarDelegate {
     //TODO: figure out how to add more than one annotation when new search term is entered
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-         //create activity indicator
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = self.view.center
-        activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
-        
-        searchBar.resignFirstResponder()
-        
-        //search request
-        let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = searchBar.text
-        let activeSearch = MKLocalSearch(request: searchRequest)
-        activeSearch.start { (response, error) in
-            activityIndicator.stopAnimating()
+        loadData()
+        print(venues.count)
+        switch searchBar.tag {
+        case 0:
+            //create activity indicator
+            let activityIndicator = UIActivityIndicatorView()
+            activityIndicator.center = self.view.center
+            activityIndicator.startAnimating()
+            self.view.addSubview(activityIndicator)
             
-            if response == nil {
-                print(error)
-            } else {
-                //remove annotations
-                let annotations = self.mapView.annotations
-                self.mapView.removeAnnotations(annotations)
+            searchBar.resignFirstResponder()
+            
+            //search request
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.naturalLanguageQuery = searchBar.text
+            let activeSearch = MKLocalSearch(request: searchRequest)
+            activeSearch.start { (response, error) in
+                activityIndicator.stopAnimating()
                 
-                //get data
-                let latitud = response?.boundingRegion.center.latitude
-                let longitud = response?.boundingRegion.center.longitude
-                
-                let newAnnotation = MKPointAnnotation()
-                newAnnotation.title = response?.mapItems.first?.name
-                newAnnotation.coordinate = CLLocationCoordinate2D(latitude: latitud!, longitude: longitud!)
-                self.mapView.addAnnotation(newAnnotation)
-                
-                //to zoom in the annotation
-                let coordinateRegion = MKCoordinateRegion.init(center: newAnnotation.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
-                self.mapView.setRegion(coordinateRegion, animated: true)
+                if response == nil {
+                    print(error)
+                } else {
+                    //remove annotations
+                    let annotations = self.mapView.annotations
+                    self.mapView.removeAnnotations(annotations)
+                    
+                    //get data
+                    for i in self.venues {
+                        let newAnnotation = MKPointAnnotation()
+                        newAnnotation.title = i.name
+                        newAnnotation.coordinate = CLLocationCoordinate2D(latitude: i.location.lat, longitude: i.location.lng)
+                        self.mapView.addAnnotation(newAnnotation)
+                        
+                        //to zoom in the annotation
+                        let coordinateRegion = MKCoordinateRegion.init(center: newAnnotation.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
+                        self.mapView.setRegion(coordinateRegion, animated: true)
+                    }
+                }
             }
+        case 1:
+            print("ehyuck")
+        default:
+            print("default")
         }
     }
-    
-//    private func addAWholeBunchOfAnnotations() {
-//        let annotationOne = MKPointAnnotation()
-//    }
 }
 
-extension mapVC: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return venues.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
-    }
-    
-    
-}
+//extension mapVC: UICollectionViewDataSource, UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return venues.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell =
+//    }
+//
+//
+//}

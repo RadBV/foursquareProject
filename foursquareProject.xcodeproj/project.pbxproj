@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D0CE5DD237A073500652DAC /* VenuePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5DC237A073500652DAC /* VenuePhotos.swift */; };
 		1D0CE5DF237A091800652DAC /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5DE237A091800652DAC /* ImageHelper.swift */; };
+		1D0CE5E1237A0ACC00652DAC /* PhotosAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5E0237A0ACC00652DAC /* PhotosAPIClient.swift */; };
 		1D46C4242370986700B9F2EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C4232370986700B9F2EE /* AppDelegate.swift */; };
 		1D46C4262370986700B9F2EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D46C4252370986700B9F2EE /* SceneDelegate.swift */; };
 		1D46C42B2370986700B9F2EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D46C4292370986700B9F2EE /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		1D0CE5DC237A073500652DAC /* VenuePhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePhotos.swift; sourceTree = "<group>"; };
 		1D0CE5DE237A091800652DAC /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		1D0CE5E0237A0ACC00652DAC /* PhotosAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAPIClient.swift; sourceTree = "<group>"; };
 		1D46C4202370986600B9F2EE /* foursquareProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foursquareProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D46C4232370986700B9F2EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D46C4252370986700B9F2EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				1D46C4542370D97900B9F2EE /* NetworkManager.swift */,
 				1D46C4562370D98D00B9F2EE /* ErrorHandling.swift */,
 				1DEA07912373A24F00888DF2 /* VenueAPIClient.swift */,
+				1D0CE5E0237A0ACC00652DAC /* PhotosAPIClient.swift */,
 				1D0CE5DE237A091800652DAC /* ImageHelper.swift */,
 			);
 			path = Networking;
@@ -306,6 +309,7 @@
 				1D46C4502370B41F00B9F2EE /* collectionsVC.swift in Sources */,
 				1DA4CF6F23739C6D0023DAC5 /* Venues.swift in Sources */,
 				1D46C45B237110E700B9F2EE /* resultsListVC.swift in Sources */,
+				1D0CE5E1237A0ACC00652DAC /* PhotosAPIClient.swift in Sources */,
 				1D46C4592370D9AA00B9F2EE /* PersistenceHelper.swift in Sources */,
 				1D46C4522370D84700B9F2EE /* LocationGetter.swift in Sources */,
 				1D0CE5DF237A091800652DAC /* ImageHelper.swift in Sources */,

@@ -10,7 +10,6 @@ import XCTest
 @testable import foursquareProject
 
 class foursquareProjectTests: XCTestCase {
-
     
     func testWeatherJSON() {
         var data = Data()
