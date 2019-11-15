@@ -31,7 +31,6 @@ class mapVC: UIViewController {
     
     var venues = [Venues]() {
         didSet {
-            //            mapView.addAnnotations(venues.filter{$0.hasValidCoordinates})
             venueCollectionView.reloadData()
         }
     }
@@ -50,6 +49,16 @@ class mapVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     //MARK: - Functions
+    
+    @IBAction func resultsList(_ sender: UIBarButtonItem) {
+        let storyboard =  UIStoryboard.init(name: "Main", bundle: nil)
+        let nav = storyboard.instantiateViewController(identifier: "resultList") as! UINavigationController
+        let listVC = nav.topViewController as! resultsListVC
+        self.present(nav, animated: true, completion: nil)
+        nav.title = "Results"
+        listVC.venues = venues
+    }
+    
     private func loadData() {
         guard let userLocation: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
         VenueAPIClient.shared.getEpisodes(lat: userLocation.latitude, long: userLocation.longitude, searchString: venueSearchString) { (result) in
@@ -98,15 +107,11 @@ class mapVC: UIViewController {
         }
     }
     
-    /*
+    
      // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+//      In a storyboard-based application, you will often want to do a little preparation before navigation
+     
     
 }
 //MARK: - Extensions

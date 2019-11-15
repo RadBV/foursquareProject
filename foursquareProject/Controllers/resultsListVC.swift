@@ -14,10 +14,13 @@ class resultsListVC: UIViewController {
     @IBOutlet weak var resultsListTableView: UITableView!
     
     //MARK: - Properties
+    var venues = [Venues]()  
     
     //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        resultsListTableView.dataSource = self
+        resultsListTableView.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -33,4 +36,24 @@ class resultsListVC: UIViewController {
     }
     */
 
+}
+
+extension resultsListVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return venues.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentVenue = venues[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? resultsCell {
+            cell.name.text = currentVenue.name
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
